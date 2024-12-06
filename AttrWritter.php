@@ -26,15 +26,19 @@ function processFiles($files) {
         // Добавляем атрибут #[VersionMethod('1')] ко всем методам, если он отсутствует
         $newContent = preg_replace_callback(
             //'/(\[\s*VersionClass*)?\s*(public|protected|private|abstract|final)?\s*(function\s+\w+\s*\(.*?\)\s*{)/',
-            '/(\[\s*VersionMethod\s*\(.*?\)\s*\])?\s*(\[\s*VersionClass\s*\(.*?\)\s*\])?\s*(public|protected|private|abstract|final)?\s*(function\s+\w+\s*\(.*?\)\s*{)/m',
+            '/(\[\s*VersionMethod\s*\(.*?\)\s*\])?\s*(\[\s*VersionClass\s*\(.*?\)\s*\])?\s*(public|protected|private|abstract|final|static)?\s*(public|protected|private|abstract|final|static)?\s*(public|protected|private|abstract|final|static)?\s*(function\s+\w+\s*\(.*?\)\s*{)/m',
             function($matches) {
                 print_r($matches);
                 // Проверяем наличие атрибута #[VersionMethod('1')]
                 if (!preg_match("/\[VersionMethod\('\d'\)\]/", $matches[1])) {
                     // Добавляем атрибут на строку выше
-
+                    $firstMod=!empty($matches[3]) ? $matches[3]. " " : "";
+                    $secondMod = !empty($matches[4]) ? $matches[4]. " " : "";
+                    $threeMod = !empty($matches[5]) ? $matches[5]. " " : "";
+                    $functionName = $matches[6];
+                    $methodName = $firstMod.$secondMod.$threeMod.$functionName;
                     print_r('change, add attribute');
-                    return "\n    #[VersionMethod('1')]\n" . $matches[3] . " " . $matches[4];
+                    return "\n    #[VersionMethod('1')]\n" . $methodName;
                 }
                 return $matches[0]; // Возвращаем без изменений, если атрибут уже есть
             },

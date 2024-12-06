@@ -403,7 +403,7 @@ class Account extends Company implements EmailInterface
         };
         return $query;
     }
-    public static function getProductsServicesPurchasedQuery()
+    public static function getProductsServicesPurchasedQuery1()
     {
         $query = "
 			SELECT
@@ -419,5 +419,10 @@ class Account extends Company implements EmailInterface
             return 1;
         };
         return $query;
+    }
+
+    final public static function g1()
+    {
+        return 1;
     }
 }

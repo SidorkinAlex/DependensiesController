@@ -1778,4 +1778,4 @@ $serched_arr=array (
     ),
     'childClassFile' => '/home/alexsid/dev/php/TF/skb-kontur/modules/SKB_CANDIDATE_LEVELS/SKB_CANDIDATE_LEVELS.php',
   ),
-)
+);

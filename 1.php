@@ -11,7 +11,8 @@ function getPhpFiles($dir) {
     }
     
     return $files;
-}    #[VersionMethod('1')]
+}
+#[VersionMethod('1')]
 function findClassesAndMethods($files) {
     $classInfo = [];
     
@@ -38,8 +39,7 @@ function findClassesAndMethods($files) {
     
     return $classInfo;
 }
-#[VersionClass('1')]
-#[VersionMethod('1')]    #[VersionMethod('1')]
+
 function getMissingParentClasses($dir) {
     $files = getPhpFiles($dir);
     $classInfo = findClassesAndMethods($files);
